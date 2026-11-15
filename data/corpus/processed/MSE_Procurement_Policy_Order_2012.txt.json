@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "file": "MSE_Procurement_Policy_Order_2012.txt",
+    "title": "Public Procurement Policy for MSEs Order 2012",
+    "type": "statutory_order",
+    "authority": "Ministry of MSME"
+  },
+  "sha256": "f749e5227c90271b2ee46fdaf64549617a3718f707d71fba154202f7d406a6f6",
+  "chunk_count": 4,
+  "chunks": [
+    {
+      "id": "MSE_Procurement_Policy_Order_2012.txt_0_Sec-1",
+      "text": "# Ministry of Micro, Small and Medium Enterprises\n# Public Procurement Policy for Micro and Small Enterprises (MSEs) Order, 2012\n# Order No. S.O. 581(E) dated 23rd March, 2012 and subsequent amendments",
+      "metadata": {
+        "document_name": "MSE_Procurement_Policy_Order_2012.txt",
+        "document_type": "statutory_order",
+        "issuing_authority": "Ministry of MSME",
+        "clause_number": "Sec-1",
+        "chunk_index": 0,
+        "char_count": 201
+      }
+    },
+    {
+      "id": "MSE_Procurement_Policy_Order_2012.txt_1_Section_3",
+      "text": "Section 3: Mandatory Public Procurement from Micro and Small Enterprises\n(1) Every Central Ministry or Department or Public Sector Undertaking shall set an annual target of minimum 25 percent procurement of total value of goods or services from Micro and Small Enterprises.",
+      "metadata": {
+        "document_name": "MSE_Procurement_Policy_Order_2012.txt",
+        "document_type": "statutory_order",
+        "issuing_authority": "Ministry of MSME",
+        "clause_number": "Section 3",
+        "chunk_index": 1,
+        "char_count": 273
+      }
+    },
+    {
+      "id": "MSE_Procurement_Policy_Order_2012.txt_2_Section_4",
+      "text": "Section 4: Tender Documents Free of Cost and Exemption from Earnest Money Deposit (EMD)\n(1) Micro and Small Enterprises registered with Udyam Registration Portal or District Industries Centres (DIC) or Khadi and Village Industries Commission (KVIC) or National Small Industries Corporation (NSIC) shall be provided tender documents free of cost.\n(2) Micro and Small Enterprises registered as above shall be exempted from payment of earnest money deposit (EMD) / Bid Security for the procurement of goods and services.",
+      "metadata": {
+        "document_name": "MSE_Procurement_Policy_Order_2012.txt",
+        "document_type": "statutory_order",
+        "issuing_authority": "Ministry of MSME",
+        "clause_number": "Section 4",
+        "chunk_index": 2,
+        "char_count": 517
+      }
+    },
+    {
+      "id": "MSE_Procurement_Policy_Order_2012.txt_3_Section_5",
+      "text": "Section 5: Relaxation of Norms for MSEs on Prior Experience and Prior Turnover\n(1) In public procurement, Central Ministries, Departments and CPSUs shall relax condition of prior turnover and prior experience in public procurement to all Micro and Small Enterprises, subject to meeting of quality and technical specifications.\n(2) To avail this relaxation, the bidder must submit valid Udyam Registration Certificate issued by Ministry of MSME.",
+      "metadata": {
+        "document_name": "MSE_Procurement_Policy_Order_2012.txt",
+        "document_type": "statutory_order",
+        "issuing_authority": "Ministry of MSME",
+        "clause_number": "Section 5",
+        "chunk_index": 3,
+        "char_count": 444
+      }
+    }
+  ]
+}

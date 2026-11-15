@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidShield — Public Procurement Bid Compliance Screening Service</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="bg-slate-900 border-b border-slate-800 text-white px-6 py-4 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-3">
+      <div class="h-9 w-9 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-inner">BS</div>
+      <div>
+        <h1 class="text-xl font-bold tracking-tight">BidShield Screening Service</h1>
+        <p class="text-xs text-slate-400">Public Procurement Bid Mandatory Compliance & Statutory Override Verification</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2 text-xs">
+      <span class="px-2.5 py-1 rounded bg-blue-950 text-blue-300 border border-blue-800 font-mono">NICSI/PROC/2023</span>
+      <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">DoE OM 2016 Verified</span>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white border-b border-slate-200 px-6 flex space-x-8 text-sm font-medium">
+    <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-3.5 border-b-2 border-blue-600 text-blue-600 font-semibold">
+      Screening Dashboard
+    </button>
+    <button onclick="switchTab('new_screening')" id="tab-new_screening" class="py-3.5 border-b-2 border-transparent text-slate-600 hover:text-slate-900">
+      New Bid Screening
+    </button>
+    <button onclick="switchTab('result')" id="tab-result" class="py-3.5 border-b-2 border-transparent text-slate-600 hover:text-slate-900">
+      Screening Findings
+    </button>
+    <button onclick="switchTab('trace')" id="tab-trace" class="py-3.5 border-b-2 border-transparent text-slate-600 hover:text-slate-900">
+      Multi-Agent Trace
+    </button>
+    <button onclick="switchTab('corpus')" id="tab-corpus" class="py-3.5 border-b-2 border-transparent text-slate-600 hover:text-slate-900">
+      Corpus & Knowledge Base
+    </button>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 p-6 max-w-7xl mx-auto w-full">
+
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Screenings</span>
+          <p id="stat-total" class="text-3xl font-extrabold text-slate-900 mt-2">12</p>
+          <span class="text-xs text-slate-400 mt-1 block">Indexed tenders & bids</span>
+        </div>
+        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+          <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">Committee Escalations</span>
+          <p id="stat-escalated" class="text-3xl font-extrabold text-amber-600 mt-2">6</p>
+          <span class="text-xs text-amber-600/80 mt-1 block">Statutory policy conflicts</span>
+        </div>
+        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+          <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Recommended to Pass</span>
+          <p id="stat-passed" class="text-3xl font-extrabold text-emerald-600 mt-2">4</p>
+          <span class="text-xs text-slate-400 mt-1 block">Compliant mandatory criteria</span>
+        </div>
+        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+          <span class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Disqualification Cites</span>
+          <p id="stat-rejected" class="text-3xl font-extrabold text-rose-600 mt-2">2</p>
+          <span class="text-xs text-slate-400 mt-1 block">Unmet mandatory criteria</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Hero -->
+      <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-xl p-6 text-white shadow-md flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold">Section 4.1 Demonstration: Startup Relaxation Scenario</h2>
+          <p class="text-slate-300 text-sm mt-1 max-w-2xl">
+            Test the primary specification case: A DPIIT-recognized startup submits a bid with turnover below the ₹5 Crore tender threshold.
+            BidShield detects the statutory override conflict and escalates to the Tender Committee with dual citations.
+          </p>
+        </div>
+        <button onclick="loadStartupScenario()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition-colors shadow">
+          Run Startup Conflict Test
+        </button>
+      </div>
+
+      <!-- Recent Screening Table -->
+      <div class="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="font-semibold text-slate-800 text-sm">Recent Screening Operations</h3>
+          <button onclick="fetchDashboardData()" class="text-slate-500 hover:text-slate-800 text-xs flex items-center space-x-1">
+            <span>Refresh</span>
+          </button>
+        </div>
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-semibold">
+            <tr>
+              <th class="px-6 py-3">Bidder Name</th>
+              <th class="px-6 py-3">Category</th>
+              <th class="px-6 py-3">Routing Recommendation</th>
+              <th class="px-6 py-3">Duration</th>
+              <th class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody id="recent-activity-body" class="divide-y divide-slate-100">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NEW BID SCREENING VIEW -->
+    <section id="view-new_screening" class="hidden">
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8 max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-slate-900">Submit Bid Summary for Mandatory Screening</h2>
+        <p class="text-xs text-slate-500 mt-1 mb-6">
+          Enforces schema, range, categorical and cross-field validation at boundary. Quarantines rejects before agent starts.
+        </p>
+
+        <form onsubmit="handleFormSubmit(event)" class="space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Tender Identifier</label>
+              <input type="text" id="f-tender_id" value="NICSI/PROC/2023/IT-INFRA-8921" class="w-full text-xs border border-slate-300 rounded px-3 py-2 bg-slate-50 font-mono" required />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Bidder Legal Registered Name</label>
+              <input type="text" id="f-bidder_name" value="AeroTech Innovations Pvt Ltd" class="w-full text-xs border border-slate-300 rounded px-3 py-2" required />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Bidder Category</label>
+              <select id="f-bidder_category" onchange="toggleCategoryFields()" class="w-full text-xs border border-slate-300 rounded px-3 py-2">
+                <option value="startup">Recognized Startup</option>
+                <option value="mse">Micro or Small Enterprise (MSE)</option>
+                <option value="large_enterprise">Large Enterprise</option>
+                <option value="consortium">Consortium / Joint Venture</option>
+                <option value="foreign">Foreign Bidder</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Annual Turnover (INR)</label>
+              <input type="number" id="f-annual_turnover" value="12000000" class="w-full text-xs border border-slate-300 rounded px-3 py-2" required />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Experience (Years)</label>
+              <input type="number" id="f-prior_experience" value="1" class="w-full text-xs border border-slate-300 rounded px-3 py-2" required />
+            </div>
+          </div>
+
+          <div id="startup-field" class="bg-amber-50 border border-amber-200 rounded p-4 text-xs">
+            <label class="block font-semibold text-amber-900 mb-1">DPIIT Recognition Number</label>
+            <input type="text" id="f-dpiit_no" value="DPIIT-2023-STARTUP-7890" class="w-full border border-amber-300 rounded px-3 py-2 bg-white font-mono" />
+            <p class="text-[11px] text-amber-700 mt-1">Rule F3: Startup recognition verified strictly and never inferred merely from free-text claims.</p>
+          </div>
+
+          <div class="border-t border-slate-200 pt-4 grid grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">EMD Deposit (INR)</label>
+              <input type="number" id="f-emd_amount" value="0" class="w-full text-xs border border-slate-300 rounded px-3 py-2" />
+            </div>
+            <div class="flex items-center space-x-2 pt-6">
+              <input type="checkbox" id="f-emd_paid" class="rounded text-blue-600" />
+              <label for="f-emd_paid" class="text-xs text-slate-700 font-medium">EMD Paid</label>
+            </div>
+            <div class="flex items-center space-x-2 pt-6">
+              <input type="checkbox" id="f-emd_exempt" checked class="rounded text-blue-600" />
+              <label for="f-emd_exempt" class="text-xs text-slate-700 font-medium">EMD Exemption Claimed</label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Additional Remarks / Claim Details</label>
+            <textarea id="f-remarks" rows="2" class="w-full text-xs border border-slate-300 rounded px-3 py-2">Claiming startup relaxation under DoE OM F.20/2/2014-PPD(Pt.) and GFR 2017 Rule 173(i).</textarea>
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <button type="submit" id="btn-submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-6 py-2.5 rounded-lg transition-colors shadow">
+              Dispatch Multi-Agent Screening
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREENING FINDINGS VIEW -->
+    <section id="view-result" class="hidden space-y-6">
+      <div id="result-banner" class="p-6 rounded-xl border shadow-sm bg-amber-50 border-amber-300 text-amber-950">
+        <span class="text-xs uppercase font-extrabold tracking-wider opacity-75">Screening Recommendation</span>
+        <h2 id="res-routing" class="text-2xl font-black mt-1 font-mono uppercase">ESCALATE-TO-COMMITTEE</h2>
+        <p id="res-summary" class="text-xs mt-2 font-medium leading-relaxed max-w-4xl"></p>
+      </div>
+
+      <div class="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200">
+          <h3 class="font-semibold text-slate-800 text-sm">Mandatory Eligibility Criteria Findings</h3>
+        </div>
+        <div id="findings-container" class="divide-y divide-slate-100">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Feedback -->
+      <div class="bg-white rounded-lg border border-slate-200 shadow-sm p-5 flex items-center justify-between">
+        <div>
+          <h4 class="text-xs font-semibold text-slate-800">Tender Committee Evaluation Feedback</h4>
+          <p class="text-[11px] text-slate-500">Rate the correctness and citations of this automated screening recommendation.</p>
+        </div>
+        <div id="feedback-actions" class="flex items-center space-x-2">
+          <button onclick="recordFeedback(true)" class="px-3 py-1.5 border border-slate-200 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded text-xs">
+            Satisfactory
+          </button>
+          <button onclick="recordFeedback(false)" class="px-3 py-1.5 border border-slate-200 hover:bg-rose-50 text-slate-700 hover:text-rose-700 rounded text-xs">
+            Unsatisfactory
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACE VIEW -->
+    <section id="view-trace" class="hidden">
+      <div class="bg-white rounded-lg border border-slate-200 shadow-sm p-6 space-y-4">
+        <div class="flex items-center justify-between border-b pb-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Execution Reconstructibility & Trace Log</h3>
+            <p id="trace-meta" class="text-xs text-slate-500"></p>
+          </div>
+          <div id="trace-stats" class="text-xs text-slate-500 font-mono"></div>
+        </div>
+        <div id="trace-steps-container" class="space-y-4">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CORPUS VIEW -->
+    <section id="view-corpus" class="hidden">
+      <div class="bg-white rounded-lg border border-slate-200 shadow-sm p-6 space-y-6">
+        <div class="flex items-center justify-between border-b pb-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Authoritative Legal & Tender Corpus</h3>
+            <p class="text-xs text-slate-500">Real, published procurement regulations and closed tender specifications.</p>
+          </div>
+          <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded font-semibold">
+            ChromaDB Vector Store Synced
+          </span>
+        </div>
+        <div id="corpus-docs-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let currentRunId = null;
+
+    function switchTab(tab) {
+      ['dashboard', 'new_screening', 'result', 'trace', 'corpus'].forEach(t => {
+        const v = document.getElementById(`view-${t}`);
+        if (v) v.classList.add('hidden');
+        const tabBtn = document.getElementById(`tab-${t}`);
+        if (tabBtn) {
+          tabBtn.className = "py-3.5 border-b-2 border-transparent text-slate-600 hover:text-slate-900";
+        }
+      });
+      const targetView = document.getElementById(`view-${tab}`);
+      if (targetView) targetView.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      if (activeBtn) {
+        activeBtn.className = "py-3.5 border-b-2 border-blue-600 text-blue-600 font-semibold";
+      }
+
+      // If user directly clicks Multi-Agent Trace tab and trace isn't rendered yet
+      if (tab === 'trace') {
+        renderTraceTab();
+      }
+    }
+
+    async function renderTraceTab() {
+      const sCont = document.getElementById('trace-steps-container');
+      if (!currentRunId) {
+        // Try to fetch latest run
+        try {
+          const res = await fetch('/api/v1/dashboard/summary');
+          if (res.ok) {
+            const d = await res.json();
+            if (d.recent_activity && d.recent_activity.length > 0) {
+              currentRunId = d.recent_activity[0].run_id;
+            }
+          }
+        } catch (e) {}
+      }
+
+      if (!currentRunId) {
+        sCont.innerHTML = '<div class="text-xs text-slate-400 py-8 text-center">No screening run has been executed yet. Run a screening to view agent traces.</div>';
+        return;
+      }
+
+      try {
+        const tRes = await fetch(`/api/v1/runs/${currentRunId}/trace`);
+        if (tRes.ok) {
+          const td = await tRes.json();
+          document.getElementById('trace-meta').innerText = `Correlation ID: ${td.run_id} | Status: ${td.status}`;
+          document.getElementById('trace-stats').innerText = `Tokens: ${td.total_tokens} | Cost: $${td.total_cost_usd} | Execution: ${td.execution_time_seconds}s`;
+
+          sCont.innerHTML = '';
+          if (!td.steps || td.steps.length === 0) {
+            sCont.innerHTML = '<div class="text-xs text-slate-400 py-8 text-center">No trace steps recorded for this run.</div>';
+            return;
+          }
+
+          td.steps.forEach(s => {
+            const sDiv = document.createElement('div');
+            sDiv.className = "border-l-2 border-blue-500 pl-4 py-1";
+            sDiv.innerHTML = `
+              <div class="flex items-center space-x-2 text-xs">
+                <span class="font-bold text-blue-700 font-mono">Step ${s.step_number}</span>
+                <span class="px-2 py-0.5 rounded bg-slate-100 font-semibold text-slate-800">${s.agent_name}</span>
+                <span class="text-slate-400 font-mono">(${s.latency_ms} ms)</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] uppercase font-mono ${s.status === 'success' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">${s.status}</span>
+              </div>
+              <p class="text-xs font-mono text-slate-700 mt-1"><span class="text-slate-400">Action:</span> ${s.action}</p>
+              <pre class="bg-slate-50 p-2.5 rounded mt-2 text-[11px] font-mono text-slate-600 overflow-x-auto border border-slate-200">${JSON.stringify(s.action_output, null, 2)}</pre>
+            `;
+            sCont.appendChild(sDiv);
+          });
+        }
+      } catch (err) {
+        sCont.innerHTML = `<div class="text-xs text-rose-500 py-4">Error loading trace: ${err}</div>`;
+      }
+    }
+
+    function toggleCategoryFields() {
+      const cat = document.getElementById('f-bidder_category').value;
+      const sField = document.getElementById('startup-field');
+      sField.style.display = (cat === 'startup') ? 'block' : 'none';
+    }
+
+    async function fetchDashboardData() {
+      try {
+        const res = await fetch('/api/v1/dashboard/summary');
+        if (res.ok) {
+          const d = await res.json();
+          document.getElementById('stat-total').innerText = d.total_runs;
+          document.getElementById('stat-escalated').innerText = d.escalated_runs;
+          document.getElementById('stat-passed').innerText = d.passed_runs;
+          document.getElementById('stat-rejected').innerText = d.rejected_runs;
+
+          const tbody = document.getElementById('recent-activity-body');
+          tbody.innerHTML = '';
+          d.recent_activity.forEach(r => {
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-slate-50";
+            tr.innerHTML = `
+              <td class="px-6 py-3.5 font-medium text-slate-900">${r.bidder_name}</td>
+              <td class="px-6 py-3.5 uppercase">${r.category}</td>
+              <td class="px-6 py-3.5">
+                <span class="px-2 py-0.5 rounded font-mono text-[11px] ${
+                  r.routing === 'escalate-to-committee' ? 'bg-amber-100 text-amber-800 font-semibold' :
+                  r.routing === 'pass-to-technical-evaluation' ? 'bg-emerald-100 text-emerald-800' :
+                  'bg-rose-100 text-rose-800'
+                }">${r.routing}</span>
+              </td>
+              <td class="px-6 py-3.5 text-slate-500">${r.duration || 0.05}s</td>
+              <td class="px-6 py-3.5">
+                <button onclick="inspectRun('${r.run_id}')" class="text-blue-600 hover:underline">View</button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+      } catch (e) {
+        console.error("Dashboard fetch error:", e);
+      }
+    }
+
+    async function fetchCorpusData() {
+      try {
+        const res = await fetch('/api/v1/corpus');
+        if (res.ok) {
+          const d = await res.json();
+          const grid = document.getElementById('corpus-docs-grid');
+          grid.innerHTML = '';
+          d.documents.forEach(doc => {
+            const div = document.createElement('div');
+            div.className = "border border-slate-200 rounded-lg p-4 bg-slate-50/50";
+            div.innerHTML = `
+              <h4 class="font-bold text-slate-900 text-xs">${doc.document}</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Authority: ${doc.authority}</p>
+              <div class="mt-3 text-[11px] font-mono space-y-1 text-slate-600">
+                <p>Filename: ${doc.filename}</p>
+                <p>Indexed Chunks: ${doc.chunks}</p>
+                <p class="truncate">SHA-256: ${doc.checksum}</p>
+              </div>
+            `;
+            grid.appendChild(div);
+          });
+        }
+      } catch (e) {
+        console.error("Corpus fetch error:", e);
+      }
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit');
+      btn.innerText = "Screening in Progress...";
+      btn.disabled = true;
+
+      const cat = document.getElementById('f-bidder_category').value;
+      const payload = {
+        tender_id: document.getElementById('f-tender_id').value,
+        bidder_name: document.getElementById('f-bidder_name').value,
+        bidder_category: cat,
+        annual_turnover_inr: parseFloat(document.getElementById('f-annual_turnover').value),
+        prior_experience_years: parseInt(document.getElementById('f-prior_experience').value),
+        emd_amount_inr: parseFloat(document.getElementById('f-emd_amount').value),
+        emd_paid: document.getElementById('f-emd_paid').checked,
+        emd_exemption_claimed: document.getElementById('f-emd_exempt').checked,
+        dpiit_recognition_number: cat === 'startup' ? document.getElementById('f-dpiit_no').value : null,
+        supporting_documents: cat === 'startup' ? [
+          {
+            document_name: "DPIIT Recognition Certificate",
+            document_type: "startup",
+            reference_number: document.getElementById('f-dpiit_no').value
+          }
+        ] : [],
+        additional_remarks: document.getElementById('f-remarks').value
+      };
+
+      try {
+        const res = await fetch('/api/v1/bids', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        const d = await res.json();
+        if (res.ok) {
+          currentRunId = d.run_id;
+          await inspectRun(d.run_id);
+        } else {
+          alert("Ingestion Validation Error: " + JSON.stringify(d.detail));
+        }
+      } catch (err) {
+        alert("Submission failed: " + err);
+      } finally {
+        btn.innerText = "Dispatch Multi-Agent Screening";
+        btn.disabled = false;
+      }
+    }
+
+    async function inspectRun(runId) {
+      currentRunId = runId;
+      try {
+        const res = await fetch(`/api/v1/runs/${runId}`);
+        if (res.ok) {
+          const d = await res.json();
+          document.getElementById('res-routing').innerText = d.routing_recommendation;
+          document.getElementById('res-summary').innerText = d.screening_summary;
+
+          const fCont = document.getElementById('findings-container');
+          fCont.innerHTML = '';
+          d.condition_findings.forEach(f => {
+            const div = document.createElement('div');
+            div.className = "p-6";
+            div.innerHTML = `
+              <div class="flex items-center space-x-3">
+                <h4 class="font-bold text-slate-900 text-sm">${f.condition_name}</h4>
+                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-100 text-slate-600 rounded">${f.tender_clause || 'Tender Clause'}</span>
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded font-semibold uppercase ${
+                  f.status === 'compliant' ? 'bg-emerald-100 text-emerald-800' :
+                  f.status === 'conflict_requires_committee' ? 'bg-amber-100 text-amber-800' :
+                  'bg-rose-100 text-rose-800'
+                }">${f.status}</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2">${f.details}</p>
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                ${f.tender_citation ? `
+                  <div class="bg-slate-50 border border-slate-200 rounded p-3">
+                    <span class="font-semibold text-slate-700 block text-[11px]">Tender Clause Citation:</span>
+                    <p class="font-mono text-slate-800 font-bold mt-0.5">${f.tender_citation.clause_number}</p>
+                    <p class="italic text-slate-600 mt-1">"${f.tender_citation.quoted_text}"</p>
+                  </div>
+                ` : ''}
+                ${f.policy_citation ? `
+                  <div class="bg-amber-50/70 border border-amber-200 rounded p-3">
+                    <span class="font-semibold text-amber-900 block text-[11px]">Statutory Policy Override Citation:</span>
+                    <p class="font-mono text-amber-900 font-bold mt-0.5">${f.policy_citation.clause_number}</p>
+                    <p class="italic text-amber-800 mt-1">"${f.policy_citation.quoted_text}"</p>
+                  </div>
+                ` : ''}
+              </div>
+            `;
+            fCont.appendChild(div);
+          });
+
+          // Fetch trace
+          const tRes = await fetch(`/api/v1/runs/${runId}/trace`);
+          if (tRes.ok) {
+            const td = await tRes.json();
+            document.getElementById('trace-meta').innerText = `Correlation ID: ${td.run_id} | Status: ${td.status}`;
+            document.getElementById('trace-stats').innerText = `Tokens: ${td.total_tokens} | Cost: $${td.total_cost_usd} | Execution: ${td.execution_time_seconds}s`;
+
+            const sCont = document.getElementById('trace-steps-container');
+            sCont.innerHTML = '';
+            td.steps.forEach(s => {
+              const sDiv = document.createElement('div');
+              sDiv.className = "border-l-2 border-blue-500 pl-4 py-1";
+              sDiv.innerHTML = `
+                <div class="flex items-center space-x-2 text-xs">
+                  <span class="font-bold text-blue-700 font-mono">Step ${s.step_number}</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-100 font-semibold">${s.agent_name}</span>
+                  <span class="text-slate-400 font-mono">(${s.latency_ms} ms)</span>
+                </div>
+                <p class="text-xs font-mono text-slate-700 mt-1">Action: ${s.action}</p>
+                <pre class="bg-slate-50 p-2.5 rounded mt-2 text-[11px] font-mono text-slate-600 overflow-x-auto border border-slate-200">${JSON.stringify(s.action_output, null, 2)}</pre>
+              `;
+              sCont.appendChild(sDiv);
+            });
+          }
+
+          switchTab('result');
+          fetchDashboardData();
+        }
+      } catch (e) {
+        console.error("Inspect error:", e);
+      }
+    }
+
+    function loadStartupScenario() {
+      document.getElementById('f-bidder_name').value = "Novatech AI Solutions Pvt Ltd";
+      document.getElementById('f-bidder_category').value = "startup";
+      document.getElementById('f-annual_turnover').value = "12000000";
+      document.getElementById('f-prior_experience').value = "1";
+      document.getElementById('f-dpiit_no').value = "DPIIT-ST-2023-9988";
+      document.getElementById('f-emd_amount').value = "0";
+      document.getElementById('f-emd_paid').checked = false;
+      document.getElementById('f-emd_exempt').checked = true;
+      toggleCategoryFields();
+      switchTab('new_screening');
+    }
+
+    async function recordFeedback(satisfactory) {
+      if (!currentRunId) return;
+      await fetch('/api/v1/feedback', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          run_id: currentRunId,
+          satisfactory: satisfactory,
+          rating: satisfactory ? 5 : 2,
+          reason: satisfactory ? "Correct identification of statutory override" : "Needs review"
+        })
+      });
+      document.getElementById('feedback-actions').innerHTML = '<span class="text-xs text-emerald-600 font-semibold">Feedback Recorded!</span>';
+    }
+
+    // Initialize
+    fetchDashboardData();
+    fetchCorpusData();
+  </script>
+</body>
+</html>

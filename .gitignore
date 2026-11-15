@@ -1,0 +1,42 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Databases & Vector Stores
+*.db
+*.sqlite3
+data/app.db
+data/chroma_db/
+!data/corpus/raw/
+!data/corpus/processed/
+
+# Environment Variables & Secrets
+.env
+.env.local
+*.key
+*.pem
+
+# Testing & Logs
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+docs/reports/*.json
+
+# Node & Frontend
+node_modules/
+dist/
+.vite/
+
+# OS Specific
+.DS_Store
+Thumbs.db

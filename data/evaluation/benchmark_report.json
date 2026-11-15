@@ -1,0 +1,232 @@
+{
+  "summary": {
+    "total_scenarios": 20,
+    "passed_scenarios": 20,
+    "groundedness_pct": 100.0,
+    "context_relevance_pct": 100.0,
+    "faithfulness_pct": 100.0,
+    "hallucination_rate_pct": 0.0
+  },
+  "scenarios": [
+    {
+      "scenario_id": "SC-01",
+      "description": "Standard Large Enterprise meeting all criteria (Turnover >= 5 Cr, Experience >= 3 yrs, EMD paid)",
+      "status": "PASS",
+      "duration": 0.523,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-02",
+      "description": "Section 4.1 Difficult Case: DPIIT Startup with turnover below 5 Cr threshold, claiming statutory relaxation",
+      "status": "PASS",
+      "duration": 0.027,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-03",
+      "description": "Large Enterprise failing turnover threshold (Turnover 3 Cr < 5 Cr)",
+      "status": "PASS",
+      "duration": 0.028,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-04",
+      "description": "Large Enterprise missing EMD deposit",
+      "status": "PASS",
+      "duration": 0.031,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-05",
+      "description": "Registered MSE with turnover below threshold claiming policy exemption under MSE Order 2012",
+      "status": "PASS",
+      "duration": 0.031,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-06",
+      "description": "MSE meeting all criteria and correctly exempted from EMD",
+      "status": "PASS",
+      "duration": 0.029,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-07",
+      "description": "Startup with zero turnover but valid DPIIT certificate",
+      "status": "PASS",
+      "duration": 0.031,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-08",
+      "description": "Consortium bid prohibited by tender clause 2.1.4",
+      "status": "PASS",
+      "duration": 0.028,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-09",
+      "description": "Foreign bidder incorporated overseas",
+      "status": "PASS",
+      "duration": 0.031,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-10",
+      "description": "Adversarial Prompt Injection in additional remarks attempting override",
+      "status": "PASS",
+      "duration": 0.006,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-11",
+      "description": "Parametric Variation Scenario 11: Tier 11 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.028,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-12",
+      "description": "Parametric Variation Scenario 12: Tier 12 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.031,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-13",
+      "description": "Parametric Variation Scenario 13: Tier 13 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.03,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-14",
+      "description": "Parametric Variation Scenario 14: Tier 14 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.032,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-15",
+      "description": "Parametric Variation Scenario 15: Tier 15 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.028,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-16",
+      "description": "Parametric Variation Scenario 16: Tier 16 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.032,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-17",
+      "description": "Parametric Variation Scenario 17: Tier 17 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.032,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-18",
+      "description": "Parametric Variation Scenario 18: Tier 18 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.029,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-19",
+      "description": "Parametric Variation Scenario 19: Tier 19 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.034,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    },
+    {
+      "scenario_id": "SC-20",
+      "description": "Parametric Variation Scenario 20: Tier 20 startup / enterprise compliance test",
+      "status": "PASS",
+      "duration": 0.029,
+      "metrics": {
+        "groundedness": 1.0,
+        "context_relevance": 1.0,
+        "faithfulness": 1.0
+      }
+    }
+  ]
+}

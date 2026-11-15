@@ -1,0 +1,114 @@
+version: '3.8'
+
+services:
+  # 1. FastAPI Application & Embedded Web UI
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bidshield-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://bidshield:procurement_pass@postgres:5432/bidshield_db
+      - SYNC_DATABASE_URL=postgresql://bidshield:procurement_pass@postgres:5432/bidshield_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CHROMA_PERSIST_DIRECTORY=/app/data/chroma_db
+      - LLM_PROVIDER=stub
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # 2. Asynchronous Scalable Agent Workers (Supports: docker compose up --scale agent-worker=3)
+  agent-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: python -m app.services.run_execution_service
+    environment:
+      - DATABASE_URL=postgresql://bidshield:procurement_pass@postgres:5432/bidshield_db
+      - SYNC_DATABASE_URL=postgresql://bidshield:procurement_pass@postgres:5432/bidshield_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CHROMA_PERSIST_DIRECTORY=/app/data/chroma_db
+      - LLM_PROVIDER=stub
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # 3. PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: bidshield-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=bidshield
+      - POSTGRES_PASSWORD=procurement_pass
+      - POSTGRES_DB=bidshield_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bidshield -d bidshield_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # 4. Redis Queue
+  redis:
+    image: redis:7-alpine
+    container_name: bidshield-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # 5. Prometheus Observability
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: bidshield-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  # 6. Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: bidshield-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+  # 7. Jaeger Distributed Tracing
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: bidshield-jaeger
+    ports:
+      - "16686:16686" # Web UI
+      - "4317:4317"   # OTLP gRPC receiver
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

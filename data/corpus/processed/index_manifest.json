@@ -1,0 +1,40 @@
+{
+  "status": "success",
+  "indexed_documents_count": 4,
+  "total_chunks_indexed": 22,
+  "index_freshness": "2026-11-15T15:04:31.148540",
+  "documents": [
+    {
+      "document": "DoE OM F.20/2/2014-PPD(Pt.) Startup Relaxation",
+      "filename": "DoE_OM_Startup_Relaxation_2016.txt",
+      "type": "statutory_order",
+      "authority": "Department of Expenditure, Ministry of Finance",
+      "checksum": "7049303a28ce4303ae1330bab4002a64c2c5e1e67633dcfe7d261c8eefb3d5fb",
+      "chunks": 6
+    },
+    {
+      "document": "General Financial Rules 2017 (Chapter 6 Procurement)",
+      "filename": "GFR_2017_Chapter_6_Procurement.txt",
+      "type": "statutory_rules",
+      "authority": "Ministry of Finance",
+      "checksum": "8076c74ed55646d40519412f2a7993f49eaccf751a0cee861241c9bc8c7e7cf3",
+      "chunks": 4
+    },
+    {
+      "document": "Public Procurement Policy for MSEs Order 2012",
+      "filename": "MSE_Procurement_Policy_Order_2012.txt",
+      "type": "statutory_order",
+      "authority": "Ministry of MSME",
+      "checksum": "f749e5227c90271b2ee46fdaf64549617a3718f707d71fba154202f7d406a6f6",
+      "chunks": 4
+    },
+    {
+      "document": "NICSI IT Infrastructure Tender NICSI/PROC/2023/IT-INFRA-8921",
+      "filename": "NICSI_Tender_IT_Infra_8921.txt",
+      "type": "tender",
+      "authority": "National Informatics Centre Services Inc. (NICSI)",
+      "checksum": "acd5bb6dbf06dc04d5e3fe7f916eb590bf43c8d91fcf412da787935595a87c5e",
+      "chunks": 8
+    }
+  ]
+}

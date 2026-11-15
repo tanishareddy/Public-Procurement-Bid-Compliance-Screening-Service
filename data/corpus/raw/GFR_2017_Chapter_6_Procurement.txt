@@ -1,0 +1,15 @@
+# General Financial Rules 2017
+# Ministry of Finance, Department of Expenditure, Government of India
+# Chapter 6: Procurement of Goods and Services
+
+Rule 161: Advertised Tender Enquiry
+(i) Subject to exceptions given under Rule 154, 155, 162, invitation to tenders should in all cases be given wide publicity using Central Public Procurement Portal (CPPP) and Government e-Marketplace (GeM).
+
+Rule 170: Bid Security (Earnest Money Deposit - EMD)
+(i) To safeguard against a bidder's withdrawing or altering its bid during the bid validity period in the case of advertised or limited tender enquiry, Bid Security (also known as Earnest Money) is to be obtained from the bidders except Micro and Small Enterprises (MSEs) as defined in MSE Procurement Policy issued by Department of Micro, Small and Medium Enterprises (MSME) or are registered with the Central Purchase Organisation or the concerned Ministry or Department or Startups as recognized by Department of Industrial Policy & Promotion (DIPP)/DPIIT.
+(ii) Amount of bid security should ordinarily range between two percent to five percent of the estimated value of the goods to be procured. The bid security that is taken from a bidder shall be forfeited if the bidder withdraws or amends, impairs or derogates from the tender in any respect within the period of validity of its tender.
+
+Rule 173: Transparency, Competition, Fairness and Elimination of Arbitrariness in the Procurement Process
+All government purchases should be conducted in a transparent, competitive and fair manner, to secure best value for money. This will also enable the prospective bidders for government procurement to compete in an open and transparent manner.
+(i) In order to promote wider participation and support innovative enterprises, Central Ministries and Departments may relax the condition of prior turnover and prior experience in public procurement to all Startups (whether MSEs or otherwise) recognized by DPIIT, subject to meeting of quality and technical specifications in accordance with the relevant provisions of GFR and guidelines issued by Department of Expenditure.
+(ii) Procuring entities shall clearly specify in the bidding documents whether such relaxation of prior turnover and prior experience shall be available to Startups and MSEs. Where the procuring entity considers that certain procurements require high technical expertise or involve critical public safety, the reasons for not relaxing prior experience and turnover must be recorded on file.

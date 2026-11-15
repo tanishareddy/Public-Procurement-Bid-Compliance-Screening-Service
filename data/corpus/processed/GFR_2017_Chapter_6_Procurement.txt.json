@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "file": "GFR_2017_Chapter_6_Procurement.txt",
+    "title": "General Financial Rules 2017 (Chapter 6 Procurement)",
+    "type": "statutory_rules",
+    "authority": "Ministry of Finance"
+  },
+  "sha256": "8076c74ed55646d40519412f2a7993f49eaccf751a0cee861241c9bc8c7e7cf3",
+  "chunk_count": 4,
+  "chunks": [
+    {
+      "id": "GFR_2017_Chapter_6_Procurement.txt_0_Sec-1",
+      "text": "# General Financial Rules 2017\n# Ministry of Finance, Department of Expenditure, Government of India\n# Chapter 6: Procurement of Goods and Services",
+      "metadata": {
+        "document_name": "GFR_2017_Chapter_6_Procurement.txt",
+        "document_type": "statutory_rules",
+        "issuing_authority": "Ministry of Finance",
+        "clause_number": "Sec-1",
+        "chunk_index": 0,
+        "char_count": 147
+      }
+    },
+    {
+      "id": "GFR_2017_Chapter_6_Procurement.txt_1_Rule_161",
+      "text": "Rule 161: Advertised Tender Enquiry\n(i) Subject to exceptions given under Rule 154, 155, 162, invitation to tenders should in all cases be given wide publicity using Central Public Procurement Portal (CPPP) and Government e-Marketplace (GeM).",
+      "metadata": {
+        "document_name": "GFR_2017_Chapter_6_Procurement.txt",
+        "document_type": "statutory_rules",
+        "issuing_authority": "Ministry of Finance",
+        "clause_number": "Rule 161",
+        "chunk_index": 1,
+        "char_count": 242
+      }
+    },
+    {
+      "id": "GFR_2017_Chapter_6_Procurement.txt_2_Rule_170",
+      "text": "Rule 170: Bid Security (Earnest Money Deposit - EMD)\n(i) To safeguard against a bidder's withdrawing or altering its bid during the bid validity period in the case of advertised or limited tender enquiry, Bid Security (also known as Earnest Money) is to be obtained from the bidders except Micro and Small Enterprises (MSEs) as defined in MSE Procurement Policy issued by Department of Micro, Small and Medium Enterprises (MSME) or are registered with the Central Purchase Organisation or the concerned Ministry or Department or Startups as recognized by Department of Industrial Policy & Promotion (DIPP)/DPIIT.\n(ii) Amount of bid security should ordinarily range between two percent to five percent of the estimated value of the goods to be procured. The bid security that is taken from a bidder shall be forfeited if the bidder withdraws or amends, impairs or derogates from the tender in any respect within the period of validity of its tender.",
+      "metadata": {
+        "document_name": "GFR_2017_Chapter_6_Procurement.txt",
+        "document_type": "statutory_rules",
+        "issuing_authority": "Ministry of Finance",
+        "clause_number": "Rule 170",
+        "chunk_index": 2,
+        "char_count": 948
+      }
+    },
+    {
+      "id": "GFR_2017_Chapter_6_Procurement.txt_3_Rule_173",
+      "text": "Rule 173: Transparency, Competition, Fairness and Elimination of Arbitrariness in the Procurement Process\nAll government purchases should be conducted in a transparent, competitive and fair manner, to secure best value for money. This will also enable the prospective bidders for government procurement to compete in an open and transparent manner.\n(i) In order to promote wider participation and support innovative enterprises, Central Ministries and Departments may relax the condition of prior turnover and prior experience in public procurement to all Startups (whether MSEs or otherwise) recognized by DPIIT, subject to meeting of quality and technical specifications in accordance with the relevant provisions of GFR and guidelines issued by Department of Expenditure.\n(ii) Procuring entities shall clearly specify in the bidding documents whether such relaxation of prior turnover and prior experience shall be available to Startups and MSEs. Where the procuring entity considers that certain procurements require high technical expertise or involve critical public safety, the reasons for not relaxing prior experience and turnover must be recorded on file.",
+      "metadata": {
+        "document_name": "GFR_2017_Chapter_6_Procurement.txt",
+        "document_type": "statutory_rules",
+        "issuing_authority": "Ministry of Finance",
+        "clause_number": "Rule 173",
+        "chunk_index": 3,
+        "char_count": 1165
+      }
+    }
+  ]
+}
