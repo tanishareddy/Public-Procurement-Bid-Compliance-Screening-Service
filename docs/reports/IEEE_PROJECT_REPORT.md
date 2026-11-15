@@ -3,7 +3,7 @@
 **Tanisha Reddy**, **Vaishnavi Singh**
 *Department of Computer Science and Engineering (AI & ML)*  
 *PES University, Bangalore, India*  
-*Course: UE24AM342AA5 — ML System Design & AgentOps*  
+
 
 ---
 
