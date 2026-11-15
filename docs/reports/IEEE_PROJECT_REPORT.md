@@ -1,6 +1,7 @@
 # Public Procurement Bid Compliance Screening Service Using Multi-Agent Orchestration and Deterministic Citation Verification
 
 **Tanisha Reddy**, **Vaishnavi Singh**
+
 *Department of Computer Science and Engineering (AI & ML)*  
 *PES University, Bangalore, India*  
 
